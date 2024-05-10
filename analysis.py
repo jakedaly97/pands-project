@@ -83,6 +83,15 @@ numeric_df = df.select_dtypes(include='number')
 correlation_matrix = numeric_df.corr()
 plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix, annot=True)
-plt.savefig('Correlation heatmap of each pair of variables')
+plt.savefig('correlation_heatmap_of_each_pair_of_variables')
 plt.show()
 
+
+# boxplots of each variable, https://seaborn.pydata.org/generated/seaborn.boxplot.html
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+sns.boxplot(data=df, x="species", y="sepal_length", ax=axes[0, 0])
+sns.boxplot(data=df, x="species", y="sepal_width", ax=axes[0, 1])
+sns.boxplot(data=df, x="species", y="petal_length", ax=axes[1, 0])
+sns.boxplot(data=df, x="species", y="petal_width", ax=axes[1, 1])
+plt.savefig('box_plot_distribution')
+plt.show()
