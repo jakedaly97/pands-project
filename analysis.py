@@ -72,3 +72,17 @@ plt.xlabel('Sepal length(cm)')
 plt.ylabel('Sepal width(cm)')
 plt.savefig('setosa_only_scatter_plot') 
 plt.show()
+
+# filtering dataframe so it just contains the numeric data, https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html
+numeric_df = df.select_dtypes(include='number')
+
+# heatmap to show the correlation between each pair of variables, https://medium.com/@szabo.bibor/how-to-create-a-seaborn-correlation-heatmap-in-python-834c0686b88e
+# NOTE, when this code was originally ran, an issue was encountered where the correlation coefficents were only displaying on the first row, numerous attempts were made to correct the code but nothing worked
+# after checking forums online it was found that there is an actual bug with MATPLOTLIB version 3.8.0 (the one that was installed) that causes the heatmap to generate incorrectly, https://github.com/microsoft/vscode-jupyter/issues/14363
+# with this new information, MATPLOTLIB was uninstalled and a previous version (MATPLOTLIB version 3.7.3) was installed in its place, this fixed the issue
+correlation_matrix = numeric_df.corr()
+plt.figure(figsize=(10, 8))
+sns.heatmap(correlation_matrix, annot=True)
+plt.savefig('Correlation heatmap of each pair of variables')
+plt.show()
+
