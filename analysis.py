@@ -39,3 +39,36 @@ for column in df: # loop through each column in the dataframe, https://www.geeks
 sns.pairplot(df, hue='species')
 plt.savefig('scatter_plots_species.png')
 plt.show()
+
+# creating a scatter plot sepal length vs sepal width with rgression line, https://seaborn.pydata.org/generated/seaborn.regplot.html
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df, x="sepal_length", y="sepal_width", hue="species")
+sns.regplot(data=df, x="sepal_length", y="sepal_width", scatter=False)
+plt.title('Sepal length vs Sepal width')
+plt.xlabel('Sepal length(cm)')
+plt.ylabel('Sepal width(cm)') 
+plt.savefig('scatter_plot_sepal_length_vs_sepal_width')
+plt.show()
+
+# creating scatter plot petal length vs petal width with regression line
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=df, x="petal_length", y="petal_width", hue="species")
+sns.regplot(data=df, x="petal_length", y="petal_width", scatter=False)
+plt.title('Petal length vs Petal width')
+plt.xlabel('Petal length(cm)')
+plt.ylabel('Petal width(cm)')
+plt.savefig('scatter_plot_petal_length_vs_petal_width') 
+plt.show()
+
+# filtering data so we only use the data from the setosa species, https://medium.com/@AIWatson/how-to-filter-data-in-python-pandas-dataframes-using-conditional-statements-69c4bb842de8
+setosa_filter = df[df['species'] == 'setosa'] # creating a new dataframe that only selects the data containg 'setosa' species
+
+# scatter plot sepal length vs sepal width but only using the setosa data
+plt.figure(figsize=(8, 6))
+sns.scatterplot(data=setosa_filter, x="sepal_length", y="sepal_width", hue="species")
+sns.regplot(data=setosa_filter, x="sepal_length", y="sepal_width", scatter=False)
+plt.title('Sepal length vs Sepal width (Setosa)')
+plt.xlabel('Sepal length(cm)')
+plt.ylabel('Sepal width(cm)')
+plt.savefig('setosa_only_scatter_plot') 
+plt.show()
