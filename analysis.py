@@ -151,5 +151,5 @@ print('Average score of the Decision Tree model:', dt_model_mean_score)
 
 with open("model_scores.txt", "w") as file:
     file.write(f"Logistic Regression model score: {sk_model_mean_score}\n")
-    file.write(f"K Nearest Neighbors model score: {kn_model_mean_score}\n")
+    file.write(f"K Nearest Neighbors model score: {knn_model_mean_score}\n")
     file.write(f"Decision Tree model score: {dt_model_mean_score}\n")
