@@ -103,3 +103,53 @@ sns.violinplot(data=df, x="species", y="petal_length", fill=False, ax=axes[1, 0]
 sns.violinplot(data=df, x="species", y="petal_width", fill=False, ax=axes[1, 1]).set_ylabel("Petal Width(cm)")
 plt.savefig('violin_plot_distribution')
 plt.show()
+
+# machine learning, https://www.hackersrealm.net/post/iris-dataset-analysis-using-python
+# modules used for machine learning
+from sklearn.model_selection import train_test_split # splits data sets into random subsets of train and test
+from sklearn.preprocessing import LabelEncoder # used to convert catagorical data to numerical data for machine learning purposes
+from sklearn.model_selection import cross_val_score # used to evaluate the models performance using cross-validation, https://www.kaggle.com/code/amarsharma768/cross-val-score
+
+# machine learning models used 
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+
+le = LabelEncoder()
+df['species'] = le.fit_transform(df['species']) # converts the catagorical 'species' data to numerical values 
+X = df.drop(columns=['species']) # input variables, all the data in the iris dataset without the species variable
+Y = df['species'] # output variable or target variable, just the species column in the dataset
+
+x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.30) # train_test_split function splits the data 70:30, 70% of the data to training set and 30% to the testing set
+
+# logistic regression 
+sk_model= LogisticRegression()
+# model training
+sk_model.fit(x_train, y_train) # trains the model using the training data (x_train and y_train)
+# print metric to get performance
+sk_model_score = cross_val_score(sk_model, X, Y, cv=3)
+sk_model_mean_score = sk_model_score.mean()
+print('Average score of the Logistic Regression model:', sk_model_mean_score)
+
+
+# knn - k-nearest neighbours
+knn_model = KNeighborsClassifier()
+knn_model.fit(x_train, y_train)
+# print metric to get performance
+knn_model_score = cross_val_score(knn_model, X, Y, cv=3) # evaluatets model performance using cross-validation, cv=3 means 3 fold cross validation i.e dataset is split into 3 different subsets that are used to train the model
+knn_model_mean_score = knn_model_score.mean() # average of the cross_val_score
+print('Average score of the Knneighbours model:', knn_model_mean_score) # how well the model is able to predict the Y variable based on the X variable, out of 100
+
+# decision tree
+dt_model = DecisionTreeClassifier()
+dt_model.fit(x_train, y_train)
+# print metric to get performance
+dt_model_score = cross_val_score(dt_model, X, Y, cv=3)
+dt_model_mean_score = dt_model_score.mean()
+print('Average score of the Decision Tree model:', dt_model_mean_score)
+
+with open("model_scores.txt", "w") as file:
+    file.write(f"Logistic Regression model score: {sk_model_mean_score}\n")
+    file.write(f"K Nearest Neighbors model score: {kn_model_mean_score}\n")
+    file.write(f"Decision Tree model score: {dt_model_mean_score}\n")
