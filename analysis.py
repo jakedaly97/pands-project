@@ -86,12 +86,20 @@ sns.heatmap(correlation_matrix, annot=True)
 plt.savefig('correlation_heatmap_of_each_pair_of_variables')
 plt.show()
 
-
-# boxplots of each variable, https://seaborn.pydata.org/generated/seaborn.boxplot.html
-fig, axes = plt.subplots(2, 2, figsize=(12, 10))
-sns.boxplot(data=df, x="species", y="sepal_length", ax=axes[0, 0])
-sns.boxplot(data=df, x="species", y="sepal_width", ax=axes[0, 1])
-sns.boxplot(data=df, x="species", y="petal_length", ax=axes[1, 0])
-sns.boxplot(data=df, x="species", y="petal_width", ax=axes[1, 1])
+# box plot of each variable, https://seaborn.pydata.org/generated/seaborn.boxplot.html
+fig, axes = plt.subplots(2, 2, figsize=(12, 10)) # tutorials on subplots. https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
+sns.boxplot(data=df, x="species", y="sepal_length", ax=axes[0, 0]).set_ylabel("Sepal Length(cm)")
+sns.boxplot(data=df, x="species", y="sepal_width", ax=axes[0, 1]).set_ylabel("Sepal Width(cm)")
+sns.boxplot(data=df, x="species", y="petal_length", ax=axes[1, 0]).set_ylabel("Petal Length(cm)")
+sns.boxplot(data=df, x="species", y="petal_width", ax=axes[1, 1]).set_ylabel("Petal Width(cm)")
 plt.savefig('box_plot_distribution')
+plt.show()
+
+# violin plot of each variable, https://seaborn.pydata.org/generated/seaborn.violinplot.html
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+sns.violinplot(data=df, x="species", y="sepal_length", fill=False, ax=axes[0, 0]).set_ylabel("Sepal Length(cm)")
+sns.violinplot(data=df, x="species", y="sepal_width", fill=False, ax=axes[0, 1]).set_ylabel("Sepal Width(cm)")
+sns.violinplot(data=df, x="species", y="petal_length", fill=False, ax=axes[1, 0]).set_ylabel("Petal Length(cm)")
+sns.violinplot(data=df, x="species", y="petal_width", fill=False, ax=axes[1, 1]).set_ylabel("Petal Width(cm)")
+plt.savefig('violin_plot_distribution')
 plt.show()
