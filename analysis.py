@@ -12,7 +12,7 @@ import seaborn as sns
 # modules used for machine learning
 from sklearn.model_selection import train_test_split # splits data sets into random subsets of train and test
 from sklearn.preprocessing import LabelEncoder # used to convert catagorical data to numerical data for machine learning purposes
-from sklearn.model_selection import cross_val_score # used to evaluate the models performance using cross-validation, https://www.kaggle.com/code/amarsharma768/cross-val-score
+from sklearn.model_selection import cross_val_score # used to evaluate the models performance using cross-validation
 
 # machine learning models used 
 from sklearn.linear_model import LogisticRegression
@@ -41,6 +41,10 @@ for column in df: # loop through each column in the dataframe, https://www.geeks
     plt.title(f'Histogram of {column}') # gives a title for each histogram with corresponding variable name
     plt.xlabel(f'{column} in centimetres') # variable name on x axis
     plt.ylabel('Frequency') # label y axis
+    if column != 'species':  # check if the column is not 'species'
+        plt.xlabel(f'{column} in centimetres')
+    else:
+        plt.xlabel('Species')
     plt.savefig(f'{column}_histogram.png') # saves histogram with corresponding colum name to .png file, https://stackoverflow.com/questions/73912257/saving-histogram-as-jpg
 
 # creating a scatter plot for each pair of variables coloured by species, https://www.geeksforgeeks.org/python-seaborn-pairplot-method/
@@ -127,7 +131,7 @@ sk_model= LogisticRegression()
 # model training
 sk_model.fit(x_train, y_train) # trains the model using the training data (x_train and y_train)
 # print metric to get performance
-sk_model_score = cross_val_score(sk_model, X, Y, cv=3)
+sk_model_score = cross_val_score(sk_model, X, Y, cv=3) #https://www.kaggle.com/code/amarsharma768/cross-val-score
 sk_model_mean_score = sk_model_score.mean()
 print('Average score of the Logistic Regression model:', sk_model_mean_score)
 
