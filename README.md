@@ -15,7 +15,31 @@ The Iris dataset is popular amongst beginners in the field of data analytics, st
 
 
 
-## About This Project
+## Code Description
+
+1. **Importing Libraries:** The code starts by importing necessary libraries such as pandas, numpy, matplotlib, seaborn, and scikit-learn.
+
+2. **Loading Data:** The Iris dataset is loaded from a URL using pandas read_csv() function.
+
+3. **Summary Statistics:** Summary statistics of the dataset are computed using describe() function and formatted into a table using the tabulate module. The table is then saved as a text file.
+
+4. **Data Visualization:**
+
+* Histograms are created for each variable in the dataset and saved as individual PNG files.
+* Scatter plots are generated for each variable pair and displayed on a single pair plot, coloured by species and saved as a PNG file
+* Two specific scatter plots (Sepal length vs Sepal width and Petal length vs Petal width) are generated with added regrression line to show correlation. Saved as seperate PNG files.
+* A scatterplot of Sepal length vs Sepal width is generated using only Setosa species data with added regression line, saved as PNG file.
+* Box plots and violin plots are created to visualize the distribution of each variable across different species, both saved as PNG files.
+
+5. **Correlation Analysis:** A heatmap is generated to visualize the correlation between each pair of numeric variables.
+
+6. **Machine Learning:**
+
+* Data preprocessing: Label encoding is applied to convert categorical species labels into numerical values.
+* The dataset is split into training and testing sets.
+* Three machine learning models (Logistic Regression, K Nearest Neighbors, Decision Tree) are trained using the training data.
+* Model performance is evaluated using cross-validation with 3 folds.
+* The average scores of each model are calculated and saved into a .txt file.
 
 
 

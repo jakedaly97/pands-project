@@ -2,15 +2,25 @@
 # Author: Jake Daly
 # Analysis of the iris data set
 
+# modules imported for data visulaisation and analysis
 import pandas as pd
 import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+# modules used for machine learning
+from sklearn.model_selection import train_test_split # splits data sets into random subsets of train and test
+from sklearn.preprocessing import LabelEncoder # used to convert catagorical data to numerical data for machine learning purposes
+from sklearn.model_selection import cross_val_score # used to evaluate the models performance using cross-validation, https://www.kaggle.com/code/amarsharma768/cross-val-score
+
+# machine learning models used 
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
  
  # Iris data set
- # https://archive.ics.uci.edu/dataset/53/iris, linked by Andrew Beatty, was using this version of the data set for the first while but encounterd errors when i was trying to plot the scatter graphs.
- # https://github.com/mwaskom/seaborn-data/blob/master/iris.csv, one im using, raw data here was used by Ian Mcloughlinn in his lectures
+ # https://github.com/mwaskom/seaborn-data/blob/master/iris.csv
 
 # download iris data and read it into a dataframe
 url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv' # found here https://github.com/mwaskom/seaborn-data/blob/master/iris.csv
@@ -18,9 +28,7 @@ df = pd.read_csv(url)
 
 # use df.describe() function to get summary statistics of the variables, https://discuss.datasciencedojo.com/t/how-to-get-summary-statistics-of-a-pandas-dataframe-in-python/1137/2
 summary = df.describe()
-
-# format the data into a simple table using the tabulate module, https://pypi.org/project/tabulate/
-table = tabulate(summary, headers='keys', tablefmt='grid')
+table = tabulate(summary, headers='keys', tablefmt='grid') # format the data into a simple table using the tabulate module, https://pypi.org/project/tabulate/
 
 # save the table as a .txt file
 with open('summary.txt', 'w') as f:
@@ -105,17 +113,8 @@ plt.savefig('violin_plot_distribution')
 plt.show()
 
 # machine learning, https://www.hackersrealm.net/post/iris-dataset-analysis-using-python
-# modules used for machine learning
-from sklearn.model_selection import train_test_split # splits data sets into random subsets of train and test
-from sklearn.preprocessing import LabelEncoder # used to convert catagorical data to numerical data for machine learning purposes
-from sklearn.model_selection import cross_val_score # used to evaluate the models performance using cross-validation, https://www.kaggle.com/code/amarsharma768/cross-val-score
 
-# machine learning models used 
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-
-
+# preparing the data set for machine learning
 le = LabelEncoder()
 df['species'] = le.fit_transform(df['species']) # converts the catagorical 'species' data to numerical values 
 X = df.drop(columns=['species']) # input variables, all the data in the iris dataset without the species variable
@@ -123,7 +122,7 @@ Y = df['species'] # output variable or target variable, just the species column 
 
 x_train, x_test, y_train, y_test = train_test_split(X, Y, test_size=0.30) # train_test_split function splits the data 70:30, 70% of the data to training set and 30% to the testing set
 
-# logistic regression 
+# logistic regression model
 sk_model= LogisticRegression()
 # model training
 sk_model.fit(x_train, y_train) # trains the model using the training data (x_train and y_train)
@@ -133,15 +132,15 @@ sk_model_mean_score = sk_model_score.mean()
 print('Average score of the Logistic Regression model:', sk_model_mean_score)
 
 
-# knn - k-nearest neighbours
+# knn - k-nearest neighbours model
 knn_model = KNeighborsClassifier()
 knn_model.fit(x_train, y_train)
 # print metric to get performance
 knn_model_score = cross_val_score(knn_model, X, Y, cv=3) # evaluatets model performance using cross-validation, cv=3 means 3 fold cross validation i.e dataset is split into 3 different subsets that are used to train the model
 knn_model_mean_score = knn_model_score.mean() # average of the cross_val_score
-print('Average score of the Knneighbours model:', knn_model_mean_score) # how well the model is able to predict the Y variable based on the X variable, out of 100
+print('Average score of the Knneighbours model:', knn_model_mean_score) # how well the model is able to predict the Y variable based on the X variable, score out of 100
 
-# decision tree
+# decision tree model
 dt_model = DecisionTreeClassifier()
 dt_model.fit(x_train, y_train)
 # print metric to get performance
@@ -149,6 +148,7 @@ dt_model_score = cross_val_score(dt_model, X, Y, cv=3)
 dt_model_mean_score = dt_model_score.mean()
 print('Average score of the Decision Tree model:', dt_model_mean_score)
 
+# saving scores as .txt file
 with open("model_scores.txt", "w") as file:
     file.write(f"Logistic Regression model score: {sk_model_mean_score}\n")
     file.write(f"K Nearest Neighbors model score: {knn_model_mean_score}\n")
