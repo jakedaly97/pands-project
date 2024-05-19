@@ -131,7 +131,7 @@ sk_model= LogisticRegression()
 # model training
 sk_model.fit(x_train, y_train) # trains the model using the training data (x_train and y_train)
 # print metric to get performance
-sk_model_score = cross_val_score(sk_model, X, Y, cv=3) #https://www.kaggle.com/code/amarsharma768/cross-val-score
+sk_model_score = cross_val_score(sk_model, X, Y, cv=3) # https://www.kaggle.com/code/amarsharma768/cross-val-score
 sk_model_mean_score = sk_model_score.mean()
 print('Average score of the Logistic Regression model:', sk_model_mean_score)
 

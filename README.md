@@ -119,6 +119,39 @@ The accuracy scores of each model were saved into a .txt file named "model_score
 
 ## Resources
 
+1. https://github.com/mwaskom/seaborn-data/blob/master/iris.csv **Description:** Link where the Iris dataset was downloaded and used for this project.
+
+2. https://discuss.datasciencedojo.com/t/how-to-get-summary-statistics-of-a-pandas-dataframe-in-python/1137/2 **Description:** Shows how to get the summary statistics of a dataframe.
+
+3. https://pypi.org/project/tabulate/ **Description:** This link points to the documentation of the tabulate module. The module is used to format data, such as summary statistics, into a table format.
+
+4. https://www.geeksforgeeks.org/plotting-histogram-in-python-using-matplotlib/ **Description:** This link provides a tutorial on how to plot histograms using Matplotlib, which is used in the script to create histograms for each variable in the DataFrame.
+
+5. https://www.geeksforgeeks.org/loop-or-iterate-over-all-or-certain-columns-of-a-dataframe-in-python-pandas/ **Description:** Shows how to loop over columns in a data frame.
+
+6. https://stackoverflow.com/questions/73912257/saving-histogram-as-jpg **Description:** Saving histograms as .png tutorial.
+
+7. https://www.geeksforgeeks.org/python-seaborn-pairplot-method/ **Description:** This link offers a tutorial on using Seaborn's pairplot method, which is utilized in the script to create scatter plots for each pair of variables, colored by species.
+
+8. https://seaborn.pydata.org/generated/seaborn.regplot.html **Description:** This link leads to the documentation of Seaborn's regplot function, used to create scatter plots with regression lines for specific pairs of variables.
+
+9. https://medium.com/@AIWatson/how-to-filter-data-in-python-pandas-dataframes-using-conditional-statements-69c4bb842de8 **Description:** This link provides guidance on how to filter data in Pandas DataFrames based on conditional statements, which is used in the script to filter data for a specific species.
+
+10. https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html **Description:** This link leads to the documentation of the select_dtypes method in Pandas, which is used to filter the DataFrame to only contain numeric data.
+
+11. https://medium.com/@szabo.bibor/how-to-create-a-seaborn-correlation-heatmap-in-python-834c0686b88e **Description:** This link offers a tutorial on creating correlation heatmaps using Seaborn, which is utilized in the script to visualize the correlation between each pair of variables.
+
+12. https://github.com/microsoft/vscode-jupyter/issues/14363 **Description:** Bug associated with matplotlib.
+
+13. https://seaborn.pydata.org/generated/seaborn.boxplot.html **Description:** This link leads to the documentation of Seaborn's boxplot function, used to create box plots for each variable in the DataFrame.
+
+14. https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html **Description:** Tutorial on how to create subplots.
+
+15. https://seaborn.pydata.org/generated/seaborn.violinplot.html **Description:** This link directs to the documentation of Seaborn's violinplot function, utilized in the script to create violin plots for each variable in the DataFrame.
+
+16. https://www.hackersrealm.net/post/iris-dataset-analysis-using-python **Description:** Machine learning tutorial using the Iris dataset.
+
+17. https://www.kaggle.com/code/amarsharma768/cross-val-score **Description:** This link provides information on cross-validation score calculation, which is used in the script to evaluate the performance of machine learning models.
 
 
 ## Get Started
